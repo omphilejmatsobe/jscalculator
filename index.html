@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta/>
+        <title>Calculator</title>
+        <link rel="stylesheet" href="calc.css"/>
+    </head>
+    <body>
+        <div class="container">
+            <div class="display">
+                <input class="screen" id="screen" type="text" placeholder="0"/>
+            </div>
+    
+            <div class="btns">
+                <div class="row">
+                    <button id="ce" onclick="removeCont()">CE</button>
+                    <button onclick="factorial()">x!</button>
+                    <button class="calc_btn">(</button>
+                    <button class="calc_btn">)</button>
+                    <button class="calc_btn">%</button>
+                    <button id="ac" onclick="screenDisplay.value=''">AC</button>
+                </div>
+
+                <div class="row">
+                    <button onclick="sinFunc()">sin</button>
+                    <button onclick="piFunc()">π</button>
+                    <button class="calc_btn">7</button>
+                    <button class="calc_btn">8</button>
+                    <button class="calc_btn">9</button>
+                    <button class="calc_btn">÷</button>
+                </div>
+
+                <div class="row">
+                    <button onclick="cosFunc()">cos</button>
+                    <button onclick="logFunc()">log</button>
+                    <button class="calc_btn">4</button>
+                    <button class="calc_btn">5</button>
+                    <button class="calc_btn">6</button>
+                    <button class="calc_btn">×</button>
+                </div>
+
+                <div class="row">
+                    <button onclick="tanFunc()">tan</button>
+                    <button onclick="sqrtFunc()">√</button>
+                    <button class="calc_btn">1</button>
+                    <button class="calc_btn">2</button>
+                    <button class="calc_btn">3</button>
+                    <button class="calc_btn">-</button>
+                </div>
+
+                <div class="row">
+                    <button onclick="e()">e</button>
+                    <button onclick="powFunc()">x <span style="position: relative; bottom: .4em; right: .1em;">y</span> </button>
+                    <button class="calc_btn">0</button>
+                    <button class="calc_btn">.</button>
+                    <button id="eval" onclick="equalFunc()">=</button>
+                    <button class="calc_btn">+</button>
+                </div>
+            </div>
+        </div>  
+    </body>
+    <script type="text/javascript" src="calculator.js"></script>
+</html>
