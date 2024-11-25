@@ -1,3 +1,5 @@
+
+
 var screenDisplay = document.querySelector('#screen'); //Var  for screen element
 var calcBtn = document.querySelectorAll('.calc_btn'); //Var for all button elements
 
@@ -35,64 +37,35 @@ const factorial = () =>
     screenDisplay.value = fact;
 }
 
-const equalFunc = () =>
-{
-    let numArray = [];
-    let opArr = [];
-    var result;
+var equalFunc = () => {
+    s = screenDisplay.value;
 
-    if (!Number.isInteger(Number(screenDisplay.value[0]))
-        &&
-        !Number.isInteger(Number(screenDisplay.value[screenDisplay.value.length - 1]))
-        && (screenDisplay.value[screenDisplay.value.length - 1] != ')')
-    )
-    {
-        errorFunc();
-    }
-
-    var x = 0;
-    var idx = 0;
-    var val = 0;
-    var opArrIdx = 0;
-
-    for (var i = 0; i < screenDisplay.value.length; i++)
-    {
-        if (!Number.isInteger(Number(screenDisplay.value[i])))
-        {
-            if (screenDisplay.value[i] != "("
-                || 
-                screenDisplay.value[i] != ")"
-            )
-            {
-                opArr[opArrIdx] = screenDisplay.value[i];
-            }
-
-            if (!Number.isInteger(Number(screenDisplay.value[i+1]))) errorFunc();
-            idx++;
-            val = 0;
+    let num = '';
+    let prevOperator = '+';
+    const stack = [];
+    
+    for (let i = 0; i <= s.length; i++) {
+        const ch = s[i];
+        
+        if (ch >= '0' && ch <= '9') {
+            num += ch;
         }
-        else
-        {
-            val *= 10;
-            val += Number(screenDisplay.value[i]);
+        
+        if ((ch < '0' || ch > '9') && ch !== ' ' || i === s.length) {
+            if (prevOperator === '+') stack.push(Number(num));
+            if (prevOperator === '-') stack.push(-Number(num));
+            if (prevOperator === '*') stack.push(stack.pop() * Number(num));
+            if (prevOperator === '/') stack.push(Math.trunc(stack.pop() / Number(num)));
+            
+            prevOperator = ch;
+            num = '';
         }
-        numArray[idx] = val;
     }
 
-    var result = numArray[0];
-    for (var i = 0; i < numArray.length - 1; i++)
-    {
-        console.log(numArray[i]);
-        if (opArr[i] == '+') result = numArray[i] + numArray[i + 1];
-        if (opArr[i] == 'x') result = numArray[i] * numArray[i + 1];
-        if (opArr[i] == '/') result = numArray[i] / numArray[i + 1];
-        if (opArr[i] == '-') result = numArray[i] - numArray[i + 1];
-
-        numArray[i + 1] = result;
-    }
-
-    screenDisplay.value = result;
-}
+    var res = stack.reduce((total, cur) => total + cur, 0); 
+    screenDisplay.value = res.toString();
+    return res;
+};
 
 const errorFunc = () =>
 {
