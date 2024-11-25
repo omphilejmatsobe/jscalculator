@@ -51,7 +51,7 @@ var equalFunc = () => {
             num += ch;
         }
         
-        if ((ch < '0' || ch > '9') && ch !== ' ' || i === s.length) {
+        if ((Number.isInteger(Number(ch))) || i === s.length) {
             if (prevOperator === '+') stack.push(Number(num));
             if (prevOperator === '-') stack.push(-Number(num));
             if (prevOperator === '*') stack.push(stack.pop() * Number(num));
